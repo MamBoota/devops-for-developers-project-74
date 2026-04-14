@@ -1,5 +1,11 @@
 services:
   app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # Для разработки используем обычный Dockerfile с hot-reload
+    volumes:
+      - ./app:/app
     command: make dev
     ports:
       - "8080:8080"
