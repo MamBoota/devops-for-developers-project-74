@@ -2,8 +2,4 @@ services:
   app:
     build: .
     volumes:
-      - ./app/:/app
-    ports:
-      - "3000:3000"
-    working_dir: /app
-    command: npm start
+      - ./app:/app
