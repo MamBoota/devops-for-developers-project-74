@@ -1,0 +1,15 @@
+localhost {
+  log {
+    format json
+  }
+
+  # Компрессия ответов (zstd + gzip для совместимости)
+  encode zstd gzip
+
+  # Самоподписной сертификат для локальной разработки
+  tls internal
+
+  # Проксирование всех запросов на сервис app:8080
+  # "app" — это имя сервиса в docker-compose.yml
+  reverse_proxy /* app:8080
+}

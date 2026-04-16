@@ -11,3 +11,24 @@ services:
       - "8080:8080"
     environment:
       - NODE_ENV=development
+
+  # === Новый сервис Caddy ===
+  caddy:
+    image: caddy:2-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      # Монтируем конфигурационный файл
+      - ./services/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      # Persist Caddy data (certificates, etc.)
+      - caddy-data:/data
+      - caddy-config:/config
+    depends_on:
+      - app
+    networks:
+      - default  # Использует ту же сеть, что и app
+
+volumes:
+  caddy-data:
+  caddy-config:
