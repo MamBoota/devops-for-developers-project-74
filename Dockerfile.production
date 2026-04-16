@@ -14,8 +14,13 @@ COPY app/ .
 # Открываем порт
 EXPOSE 8080
 
-# Переменная окружения для продакшена
-ENV NODE_ENV=production
+# 🔥 Переменные для миграций и тестов (критично для CI!)
+ENV NODE_ENV=test
+ENV DATABASE_HOST=localhost
+ENV DATABASE_PORT=5432
+ENV DATABASE_NAME=postgres
+ENV DATABASE_USERNAME=postgres
+ENV DATABASE_PASSWORD=password
 
 # Сборка приложения (если требуется)
 RUN make build
