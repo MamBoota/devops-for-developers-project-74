@@ -1,4 +1,8 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/MamBoota/devops-for-developers-project-74/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/MamBoota/devops-for-developers-project-74/actions)
 
-Допили редмишку, сделай так, что бы это был тупо упаковщик если забыл о чем я пишу прочти игнорирующие файлы и посмотри шаг 1 в проекте.
+# javascript-fastify-blog
+
+[![CI/CD Pipeline](https://github.com/mamboota/devops-for-developers-project-74/actions/workflows/push.yml/badge.svg)](https://github.com/mamboota/devops-for-developers-project-74/actions/workflows/push.yml)
+
+Jписание проекта...
