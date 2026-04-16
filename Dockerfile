@@ -2,13 +2,24 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-# Копируем файлы зависимостей из папки app
+# Устанавливаем build-зависимости для компиляции нативных модулей
+RUN apk add --no-cache --virtual .build-deps \
+    python3 \
+    make \
+    g++ \
+    gcc \
+    libc-dev
+
+# Копируем package-файлы
 COPY app/package*.json ./
 
-# Устанавливаем зависимости
+# Устанавливаем зависимости (включая нативные модули)
 RUN npm install
 
-# Копируем весь код приложения
+# Удаляем build-зависимости после установки (уменьшаем размер образа)
+RUN apk del .build-deps
+
+# Копируем исходный код
 COPY app/ .
 
 # CMD будет переопределён в docker-compose

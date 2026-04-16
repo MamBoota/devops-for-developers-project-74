@@ -4,6 +4,10 @@
 setup:
 	docker compose run --rm app make setup
 
+# Тесты
+test:
+	docker compose -f docker-compose.yml up --abort-on-container-exit --exit-code-from app
+
 # Запуск dev-сервера
 dev:
 	docker compose up
