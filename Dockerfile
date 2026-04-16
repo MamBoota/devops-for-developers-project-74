@@ -2,14 +2,33 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-# Копируем файлы зависимостей из папки app
+# Build-зависимости для нативных модулей
+RUN apk add --no-cache --virtual .build-deps \
+    python3 \
+    make \
+    g++ \
+    gcc \
+    libc-dev \
+    py3-setuptools
+
+# Копируем package-файлы
 COPY app/package*.json ./
 
 # Устанавливаем зависимости
 RUN npm install
 
-# Копируем весь код приложения
+# Удаляем build-зависимости
+RUN apk del .build-deps
+
+# Копируем код приложения
 COPY app/ .
 
-# CMD будет переопределён в docker-compose
+# Переменные окружения для миграций в CI (БД на localhost)
+ENV NODE_ENV=test
+ENV DATABASE_HOST=localhost
+ENV DATABASE_PORT=5432
+ENV DATABASE_NAME=postgres
+ENV DATABASE_USERNAME=postgres
+ENV DATABASE_PASSWORD=password
+
 CMD ["sh"]
