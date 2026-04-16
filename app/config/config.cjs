@@ -2,27 +2,24 @@ require('dotenv').config();
 
 module.exports = {
   development: {
-    dialect: 'sqlite',
-    storage: './database.sqlite',
-  },
-  production: {
+    username: process.env.DATABASE_USERNAME || 'postgres',
+    password: process.env.DATABASE_PASSWORD || 'password',
+    database: process.env.DATABASE_NAME || 'postgres',
+    host: process.env.DATABASE_HOST || 'db',
+    port: process.env.DATABASE_PORT || 5432,
     dialect: 'postgres',
-    database: process.env.DATABASE_NAME,
-    username: process.env.DATABASE_USERNAME,
-    password: process.env.DATABASE_PASSWORD,
-    port: process.env.DATABASE_PORT,
-    host: process.env.DATABASE_HOST,
+    logging: console.log, // Опционально: логи запросов в консоль
   },
   test: {
-    dialect: 'sqlite',
-    storage: './database.test.sqlite',
+    username: process.env.DATABASE_USERNAME || 'postgres',
+    password: process.env.DATABASE_PASSWORD || 'password',
+    database: process.env.DATABASE_NAME || 'postgres',
+    host: process.env.DATABASE_HOST || 'db',
+    port: process.env.DATABASE_PORT || 5432,
+    dialect: 'postgres',
   },
-  // test: {
-  //   dialect: 'postgres',
-  //   database: process.env.DATABASE_NAME,
-  //   username: process.env.DATABASE_USERNAME,
-  //   password: process.env.DATABASE_PASSWORD,
-  //   port: process.env.DATABASE_PORT,
-  //   host: process.env.DATABASE_HOST,
-  // },
+  production: {
+    use_env_variable: 'DATABASE_URL',
+    dialect: 'postgres',
+  },
 };

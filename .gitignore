@@ -10,3 +10,8 @@ temp/
 .cache
 .github
 .npm
+
+# Environment variables (secrets)
+.env
+.env.local
+.env.*.local
