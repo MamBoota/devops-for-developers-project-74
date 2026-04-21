@@ -1,58 +1,51 @@
 ```
+# Dependencies
+node_modules/
+venv/
+.venv/
+__pycache__/
+.mypy_cache/
+.pytest_cache/
+dist/
+build/
+target/
+.gradle/
+
+# Logs and temp files
+*.log
+*.tmp
+*.swp
+
 # Environment
 .env
 .env.local
 *.env.*
 
-# Logs
-*.log
-
-# Temporary files
-*.tmp
-*.swp
-
-# Dependencies
-node_modules/
-
-# Build artifacts
-dist/
-build/
-target/
-
-# Python
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-*.so
-*.egg-info/
-.eggs/
-
-# Virtual environments
-venv/
-.venv/
-env/
-ENV/
-
-# IDE
+# Editors
 .vscode/
 .idea/
-*.iml
-*.ipr
-*.iws
 
-# OS
+# System
 .DS_Store
 Thumbs.db
 
-# Testing
-.coverage
-htmlcov/
-.coverage.*
-.nyc_output/
-coverage-final.json
+# Compiled files
+*.pyc
+*.class
+*.o
+*.exe
+*.dll
+*.so
+*.a
+*.obj
+*.out
 
-# Compression
+# Coverage
+coverage/
+htmlcov/
+.coverage
+
+# Compressed files
 *.zip
 *.gz
 *.tar
@@ -75,8 +68,4 @@ coverage-final.json
 *.tar.bz2
 *.tar.xz
 *.tar.zst
-
-# Docker
-.dockerenv
-!Dockerfile*
 ```
