@@ -1,8 +1,5 @@
 require('dotenv').config();
 
-// 🔥 GitHub Actions автоматически устанавливает CI=true
-const isCI = process.env.CI === 'true';
-
 module.exports = {
   development: {
     dialect: 'postgres',
@@ -10,9 +7,9 @@ module.exports = {
     username: process.env.DATABASE_USERNAME || 'postgres',
     password: process.env.DATABASE_PASSWORD || 'password',
     port: process.env.DATABASE_PORT || 5432,
-    // 🔥 В CI: localhost (БД предоставлена инфраструктурой)
-    // 🔥 Локально: DATABASE_HOST из env или 'db' по умолчанию для docker-compose
-    host: isCI ? 'localhost' : (process.env.DATABASE_HOST || 'db'),
+    // 🔥 По умолчанию localhost (для CI и локального запуска без docker-compose)
+    // 🔥 В docker-compose переопределяется через DATABASE_HOST=db
+    host: process.env.DATABASE_HOST || 'localhost',
     logging: false,
   },
   production: {
@@ -29,8 +26,9 @@ module.exports = {
     username: process.env.DATABASE_USERNAME || 'postgres',
     password: process.env.DATABASE_PASSWORD || 'password',
     port: process.env.DATABASE_PORT || 5432,
-    // 🔥 Тот же принцип: в CI - localhost, локально - из env или 'db'
-    host: isCI ? 'localhost' : (process.env.DATABASE_HOST || 'db'),
+    // 🔥 По умолчанию localhost (для CI и локального запуска без docker-compose)
+    // 🔥 В docker-compose переопределяется через DATABASE_HOST=db
+    host: process.env.DATABASE_HOST || 'localhost',
     logging: false,
   },
 };
