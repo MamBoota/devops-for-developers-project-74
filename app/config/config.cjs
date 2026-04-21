@@ -30,5 +30,11 @@ module.exports = {
     // 🔥 В docker-compose переопределяется через DATABASE_HOST=db
     host: process.env.DATABASE_HOST || 'localhost',
     logging: false,
+    pool: {
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000
+    }
   },
 };
