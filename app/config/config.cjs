@@ -1,14 +1,11 @@
 require('dotenv').config();
 
 module.exports = {
+  // 🔥 development: SQLite для CI (где нет PostgreSQL), локально можно переопределить через .env
   development: {
-    dialect: 'postgres',
-    database: process.env.DATABASE_NAME || 'postgres',
-    username: process.env.DATABASE_USERNAME || 'postgres',
-    password: process.env.DATABASE_PASSWORD || 'password',
-    port: process.env.DATABASE_PORT || 5432,
-    // 🔥 Если DATABASE_HOST='db' (CI), используем localhost; иначе — как задано или localhost
-    host: process.env.DATABASE_HOST === 'db' ? 'localhost' : (process.env.DATABASE_HOST || 'localhost'),
+    dialect: 'sqlite',
+    storage: './database.sqlite',
+    logging: false,
   },
   production: {
     dialect: 'postgres',
@@ -18,12 +15,10 @@ module.exports = {
     port: process.env.DATABASE_PORT,
     host: process.env.DATABASE_HOST,
   },
+  // 🔥 test: in-memory SQLite для изолированных Jest-тестов
   test: {
-    dialect: 'postgres',
-    database: process.env.DATABASE_NAME || 'postgres',
-    username: process.env.DATABASE_USERNAME || 'postgres',
-    password: process.env.DATABASE_PASSWORD || 'password',
-    port: process.env.DATABASE_PORT || 5432,
-    host: process.env.DATABASE_HOST || 'localhost',
+    dialect: 'sqlite',
+    storage: ':memory:',
+    logging: false,
   },
 };
