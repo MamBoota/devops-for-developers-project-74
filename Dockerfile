@@ -19,12 +19,4 @@ RUN apk del .build-deps
 
 COPY app/ .
 
-# Переменные для миграций в CI (БД на localhost)
-ENV NODE_ENV=test
-ENV DATABASE_HOST=localhost
-ENV DATABASE_PORT=5432
-ENV DATABASE_NAME=postgres
-ENV DATABASE_USERNAME=postgres
-ENV DATABASE_PASSWORD=password
-
 CMD ["sh"]
