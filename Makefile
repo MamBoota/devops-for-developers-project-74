@@ -18,7 +18,13 @@ push:
 
 # Команда для CI: запуск тестов через Docker Compose
 ci:
-	docker compose -f docker-compose.yml up --abort-on-container-exit --exit-code-from app
+	@sh -c ' \
+		docker compose -f docker-compose.yml down -v --remove-orphans >/dev/null 2>&1 || true; \
+		docker compose -f docker-compose.yml up --abort-on-container-exit --exit-code-from app; \
+		status=$$?; \
+		docker compose -f docker-compose.yml down -v --remove-orphans; \
+		exit $$status \
+	'
 
 # Остановка контейнеров
 down:
