@@ -5,6 +5,7 @@ WORKDIR /app
 # Build-зависимости для нативных модулей
 RUN apk add --no-cache --virtual .build-deps \
     python3 \
+    make \
     g++ \
     gcc \
     libc-dev \
