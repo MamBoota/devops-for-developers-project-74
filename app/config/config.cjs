@@ -1,24 +1,11 @@
 require('dotenv').config();
 
-const isJestRun = Boolean(process.env.JEST_WORKER_ID);
-const postgresConnection = {
-  dialect: 'postgres',
-  database: process.env.DATABASE_NAME || 'postgres',
-  username: process.env.DATABASE_USERNAME || 'postgres',
-  password: process.env.DATABASE_PASSWORD || 'password',
-  port: process.env.DATABASE_PORT || 5432,
-  host: process.env.DATABASE_HOST || 'localhost',
-  logging: false,
-};
-
 module.exports = {
-  development: isJestRun
-    ? postgresConnection
-    : {
-      dialect: 'sqlite',
-      storage: 'database.sqlite',
-      logging: false,
-    },
+  development: {
+    dialect: 'sqlite',
+    storage: 'database.sqlite',
+    logging: false,
+  },
   production: {
     dialect: 'postgres',
     database: process.env.DATABASE_NAME,
@@ -27,5 +14,9 @@ module.exports = {
     port: process.env.DATABASE_PORT,
     host: process.env.DATABASE_HOST,
   },
-  test: postgresConnection,
+  test: {
+    dialect: 'sqlite',
+    storage: 'database.test.sqlite',
+    logging: false,
+  },
 };
