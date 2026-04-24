@@ -26,18 +26,6 @@ export default {
     },
     views: {
       article: {
-        create: {
-          success: "Успешно",
-          error: "Ошибка"
-        },
-        edit: {
-          success: "Успешно",
-          error: "Ошибка"
-        },
-        delete: {
-          success: "Успешно",
-          error: "Ошибка"
-        },
         content: {
           placeholder: 'Введите содержимое статьи',
         },
